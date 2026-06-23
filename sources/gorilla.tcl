@@ -579,7 +579,7 @@ proc gorilla::InitGui {} {
  
 	wm title . "Password Gorilla"
 	wm iconname . "Gorilla"
-	wm iconphoto . $::gorilla::images(application) 
+	if {[tk windowingsystem] ne "aqua"} { wm iconphoto . $::gorilla::images(application) }
 	
 	if {[info exists ::gorilla::preference(geometry,.)]} {
 		TryResizeFromPreference .
@@ -1371,7 +1371,7 @@ proc gorilla::OpenDatabase {title {defaultFile ""} {allowNew 0}} {
 	}
 
 	wm title $top $title
-	wm iconphoto $top $::gorilla::images(application)
+	if {[tk windowingsystem] ne "aqua"} { wm iconphoto $top $::gorilla::images(application) }
 
 	$aframe.pw.pw delete 0 end
 

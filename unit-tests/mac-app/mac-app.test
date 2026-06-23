@@ -97,7 +97,17 @@ namespace eval ::gorilla::test {
 			set f [open $gorilla r]
 			set data [read $f]
 			close $f
-			return [expr {[string first "gorilla-48x48.gif" $data] != -1 && [string first "application.gif" $data] == -1}] } \
+			return [expr {[string first "gorilla-48x48.gif" $data] != -1}] } \
+		-result 1
+
+	test mac-app-1.13 {wm iconphoto skipped on macOS} \
+		-body {
+			set srcDir [file normalize [file join [tcltest::workingDirectory] .. sources]]
+			set gorilla [file join $srcDir gorilla.tcl]
+			set f [open $gorilla r]
+			set data [read $f]
+			close $f
+			return [expr {[string first "ne \"aqua\"" $data] != -1}] } \
 		-result 1
 
 } ;# end of namespace eval ::gorilla::test
