@@ -63,11 +63,11 @@ namespace eval ::gorilla::test {
 		-result 1
 
 	test mac-app-1.8 {Bundled Tcl library exists} \
-		-body { file isdirectory [file join $appDir Contents Resources lib tcl9.0] } \
+		-body { file isdirectory [file join $appDir Contents lib tcl9.0] } \
 		-result 1
 
 	test mac-app-1.9 {Bundled Tk library exists} \
-		-body { file isdirectory [file join $appDir Contents Resources lib tk9.0] } \
+		-body { file isdirectory [file join $appDir Contents lib tk9.0] } \
 		-result 1
 
 	test mac-app-1.10 {Bundled frameworks exist} \
