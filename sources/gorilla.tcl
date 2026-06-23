@@ -101,12 +101,24 @@ if {[catch {package require Tcl 8.5-}]} {
 
 if {[catch {file home}]} {
   # no "file home" subcommand exists, so we are on pre 9.0
-  proc ::tcl::file::home {} {
-    file normalize ~
+  if {[catch {namespace ensemble configure file -map} nsmap]} {
+    # file is not an ensemble (Tcl 8.5)
+    rename file ::tcl::original_file
+    proc file {subcommand args} {
+      if {$subcommand eq "home"} {
+        return [::tcl::original_file normalize ~]
+      }
+      return [::tcl::original_file $subcommand {*}$args]
+    }
+  } else {
+    # file is an ensemble (Tcl 8.6)
+    namespace eval ::tcl::file {}
+    proc ::tcl::file::home {} {
+      file normalize ~
+    }
+    lappend nsmap home ::tcl::file::home
+    namespace ensemble configure file -map $nsmap
   }
-  set nsmap [namespace ensemble configure file -map]
-  lappend nsmap home ::tcl::file::home
-  namespace ensemble configure file -map $nsmap
 }
 
 # ----------------------------------------------------------------------
