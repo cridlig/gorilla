@@ -7330,7 +7330,7 @@ proc gorilla::getAvailableLanguages {  } {
 # ----------------------------------------------------------------------
 #
 
-set ::gorilla::images(application) [image create photo -file [file join $::gorilla::PicsDir application.gif]]
+set ::gorilla::images(application) [image create photo -file [file join $::gorilla::PicsDir gorilla-48x48.gif]]
 
 set ::gorilla::images(browse) [image create photo -file [file join $::gorilla::PicsDir browse.gif]]
 
