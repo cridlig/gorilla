@@ -13,7 +13,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.5.3.7</string>
 	<key>CFBundleExecutable</key>
-	<string>Password Gorilla</string>
+	<string>password-gorilla</string>
 	<key>CFBundleIconFile</key>
 	<string>PasswordGorilla</string>
 	<key>CFBundlePackageType</key>
